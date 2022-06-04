@@ -13,6 +13,7 @@ import {
   CurrencyRipple,
   CurrencyRupee,
   CurrencyYen,
+  CurrencyFrank
 } from "tabler-icons-react";
 import "./App.css";
 import { CurrencyPicker, CxOption } from "./CurrencyPicker";
@@ -26,7 +27,7 @@ const currencyOpts: CxOption[] = [
   { label: "CAD", image: <CurrencyDollarCanadian /> },
   { label: "YEN", image: <CurrencyYen /> },
   { label: "INR", image: <CurrencyRupee /> },
-  { label: "MYR", image: <Maltese /> }
+  { label: "MYR", image: <CurrencyFrank /> }
 ];
 
 const cryptoOpts: CxOption[] = [
