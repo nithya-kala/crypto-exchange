@@ -26,6 +26,7 @@ const currencyOpts: CxOption[] = [
   { label: "CAD", image: <CurrencyDollarCanadian /> },
   { label: "YEN", image: <CurrencyYen /> },
   { label: "INR", image: <CurrencyRupee /> },
+  { label: "MYR", image: <Maltese /> }
 ];
 
 const cryptoOpts: CxOption[] = [
