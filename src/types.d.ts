@@ -1,12 +1,11 @@
-
-export type ExItem = {
+export type OrderType = {
   from: {
-    currency: string;
-    amount: number;
-  };
+    currency: string
+    amount: number
+  }
   to: {
-    currency: string;
-    amount: number;
-  };
-};
-
+    currency: string
+    amount: number
+  }
+  orderdate: Date
+}

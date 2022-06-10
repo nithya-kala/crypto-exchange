@@ -1,26 +1,26 @@
-import { createStyles, Group, Menu, UnstyledButton } from "@mantine/core";
-import { useLocalStorage } from "@mantine/hooks";
-import React, { useState } from "react";
-import { ChevronDown } from "tabler-icons-react";
+import { createStyles, Group, Menu, UnstyledButton } from '@mantine/core'
+import { useLocalStorage } from '@mantine/hooks'
+import React, { useState } from 'react'
+import { ChevronDown } from 'tabler-icons-react'
 
 export type CxOption = {
-  label: string;
-  image: React.ReactElement;
-};
+  label: string
+  image: React.ReactElement
+}
 
 const useStyles = createStyles((theme, { opened }: { opened: boolean }) => ({
   control: {
     width: 200,
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "5px 15px",
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '5px 15px',
     borderRadius: theme.radius.sm,
     border: `1px solid ${theme.colors.gray[4]}`,
-    transition: "background-color 150ms ease",
+    transition: 'background-color 150ms ease',
     backgroundColor: opened ? theme.colors.gray[0] : theme.white,
 
-    "&:hover": {
+    '&:hover': {
       backgroundColor: theme.colors.gray[0],
     },
   },
@@ -31,20 +31,20 @@ const useStyles = createStyles((theme, { opened }: { opened: boolean }) => ({
   },
 
   icon: {
-    transition: "transform 150ms ease",
-    transform: opened ? "rotate(180deg)" : "rotate(0deg)",
+    transition: 'transform 150ms ease',
+    transform: opened ? 'rotate(180deg)' : 'rotate(0deg)',
   },
-}));
+}))
 
-type CurrencyPicker = {
-  options: CxOption[];
-  selected: CxOption;
-  onChange: (v: CxOption) => void;
-};
+type CurrencyPickerProps = {
+  options: CxOption[]
+  selected: CxOption
+  onChange: (v: CxOption) => void
+}
 
-export const CurrencyPicker: React.FC<CurrencyPicker> = (props) => {
-  const [opened, setOpened] = useState(false);
-  const { classes } = useStyles({ opened });
+export const CurrencyPicker: React.FC<CurrencyPickerProps> = (props) => {
+  const [opened, setOpened] = useState(false)
+  const { classes } = useStyles({ opened })
 
   const items = props.options.map((item) => (
     <Menu.Item
@@ -54,12 +54,11 @@ export const CurrencyPicker: React.FC<CurrencyPicker> = (props) => {
     >
       {item.label}
     </Menu.Item>
-  ));
+  ))
 
   return (
     <Menu
-      transition="pop"
-      transitionDuration={150}
+      transitionDuration={0}
       onOpen={() => setOpened(true)}
       onClose={() => setOpened(false)}
       radius="sm"
@@ -75,5 +74,5 @@ export const CurrencyPicker: React.FC<CurrencyPicker> = (props) => {
     >
       {items}
     </Menu>
-  );
-};
+  )
+}

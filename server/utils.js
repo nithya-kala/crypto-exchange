@@ -7,11 +7,11 @@
  * @returns value
  */
 function getEnv(key, isRequired = true) {
-  if (key in process.env) return process.env[key];
+  if (key in process.env) return process.env[key]
   if (isRequired) {
-    throw new Error(`Required Env var "${key}" is not set`);
+    throw new Error(`Required Env var "${key}" is not set`)
   }
-  return "";
+  return ''
 }
 
-module.exports = { getEnv };
+module.exports = { getEnv }
