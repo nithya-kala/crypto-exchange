@@ -1,4 +1,8 @@
 {
+  "runtimePlatform": {
+    "operatingSystemFamily": "LINUX",
+    "cpuArchitecture": "ARM64"
+  },
   "containerDefinitions": [
     {
       "logConfiguration": {
