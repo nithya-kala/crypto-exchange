@@ -27,24 +27,10 @@
   ],
   "placementConstraints": [],
   "memory": "1024",
-  "compatibilities": ["EXTERNAL", "EC2"],
-  "taskDefinitionArn": "arn:aws:ecs:ap-south-1:222739236344:task-definition/cryptojs:2",
   "family": "cryptojs",
-  "requiresAttributes": [
-    {
-      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.ecr-auth"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-    }
-  ],
   "pidMode": null,
   "requiresCompatibilities": ["EC2"],
   "networkMode": "bridge",
   "cpu": "1024",
-  "status": "ACTIVE",
   "volumes": []
 }
