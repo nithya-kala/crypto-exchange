@@ -1,0 +1,54 @@
+name: deploy_to_server #Name of the Workflow
+
+on: #Name of the GitHub event that triggers the workflow
+  push: #On Push Event We need to take action
+    branches: #Now we need to specify the branch name
+      - master
+
+jobs: #Workflow run is made up of one or more jobs
+  deploy:
+    runs-on: ubuntu-latest #Through which Server OS we need to Work (type of machine to run the job on)
+    steps:
+      #Using versioned actions
+      - uses: actions/checkout@v2 # --> Reference a specific version
+      - uses: actions/setup-node@v2 # --> To Setup the Server With Node Env
+        with:
+          node-version: '16' #--> Specify the Version of the Node
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1 #--> Setup the Credential for the AWS cli
+        with:
+          # Created the Secrets Under the Repo only with These Variables
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1 #--> Define Region of the AWS-CLI
+
+      - name: Login to ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, tag, and push to ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: cryptojs-repo
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" -f "server/Dockerfile" ."
+          docker push "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          printf "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+      - name: Fill in the new image ID in the ECS task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: server/task_definition.json
+          container-name: cryptojs-container
+          image: ${{ steps.build-image.outputs.image }}
+
+      - name: Deploy ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: cryptojs-service
+          cluster: myClusterUpdate
+          wait-for-service-stability: true

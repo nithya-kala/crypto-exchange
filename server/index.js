@@ -7,11 +7,11 @@ const { MongoClient, mongodbObjectId } = require('mongodb')
 const { getEnv } = require('./utils')
 const http = require('http')
 const bodyParser = require('body-parser')
-const https = require('https')
-const fs = require('fs')
+
+const dayjs = require('dayjs')
 
 const mongoClient = new MongoClient(getEnv('MONGO_URI'))
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 8080
 
 // Global mongoDB instance
 let db
@@ -21,13 +21,6 @@ mongoClient.connect((err, database) => {
   if (err) throw err
   db = database.db()
 })
-
-// https.createServer({
-//   key: fs.readFileSync('key,pem'),
-//   cert: fs.readFileSync('cert.pem'),
-// })
-
-//app.use('/api', api, (req, res, next) => next())
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -40,7 +33,6 @@ app.get('/', function (req, res) {
 })
 
 app.post('/api/insert-order', async (req, res) => {
-  console.log('Entered')
   console.log('req: ', req.body)
   let record_id = req._id
   try {
@@ -61,12 +53,18 @@ app.post('/api/insert-order', async (req, res) => {
 })
 
 app.get('/api/get-orders', async (req, res) => {
-  try {
-    let orders = await db.collection('orders').find({}).toArray()
-    res.json(orders)
-  } catch (err) {
-    throw err
+  const filter = {}
+  const ordDate = req.query.ordDate
+  if (ordDate) {
+    filter['orderDate'] = {
+      $gte: dayjs(ordDate).startOf('day').toDate(),
+      $lte: dayjs(ordDate).endOf('day').toDate(),
+    }
   }
+
+  console.log('filter: ', filter)
+  const orders = await db.collection('orders').find(filter).toArray()
+  res.json(orders)
 })
 
 const server = http.createServer(app)
