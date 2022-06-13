@@ -44,7 +44,7 @@ jobs: #Workflow run is made up of one or more jobs
         run: |
           docker buildx create --platform linux/amd64,linux/arm64 --name myarch
           docker buildx use myarch
-          docker -D --log-level=debug buildx build -t "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" --push -f server
+          docker -D --log-level=debug buildx build -t "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" --push server
       - name: Fill in the new image ID in the ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
