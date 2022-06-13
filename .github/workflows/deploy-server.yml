@@ -31,7 +31,7 @@ jobs: #Workflow run is made up of one or more jobs
         id: add-buildx
         run: |
           wget https://github.com/docker/buildx/releases/download/v0.8.2/buildx-v0.8.2.linux-amd64
-          mv buildx-v0.8.2.linux-amd64 .docker/cli-plugins/buildx
+          mv buildx-v0.8.2.linux-amd64 ~/.docker/cli-plugins/buildx
           chmod +x ~/.docker/cli-plugins/docker-buildx
 
       - name: Build, tag, and push to ECR
