@@ -30,7 +30,7 @@
     }
   ],
   "placementConstraints": [],
-  "memory": "1024",
+  "memory": "768",
   "family": "cryptojs",
   "pidMode": null,
   "requiresCompatibilities": ["EC2"],
