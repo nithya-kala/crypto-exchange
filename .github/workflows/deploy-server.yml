@@ -38,15 +38,14 @@ jobs: #Workflow run is made up of one or more jobs
       - name: Get running task
         id: get_task_id
         run: |
-          TASK_ID=`aws ecs list-tasks --cluster myCluster --desired-status RUNNING | egrep "task" | tr "/" " " |  awk '{print $4}' | tr -d '\n'` 
-          echo "TASK_ID=$TASK_ID"
-          echo "TASK_ID='${TASK_ID}'"
-          printf "::set-output taskID=$TASK_ID"
+          echo "taskID=`aws ecs list-tasks --cluster myCluster --desired-status RUNNING | egrep "task" | tr "/" " " |  awk '{print $4}' | tr -d '\n'`" >> $GITHUB_ENV
+          echo "TASK_ID=${{ env.taskID }}"
+          echo "TASK_ID='${{ env.taskID }}'"
 
       - name: Kill ecs task
-        if: ${{ steps.get_task_id.outputs.taskID }}
+        if: ${{ ${{ env.taskID }} }}
         run: |
-          aws ecs stop-task --cluster myCluster --task "${{ steps.get_task_id.outputs.taskID }}" --reason "redeploy"
+          aws ecs stop-task --cluster myCluster --task "${{ env.taskID }}" --reason "redeploy"
 
       - name: Add buildx plugin for docker
         id: add-buildx
