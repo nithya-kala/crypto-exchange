@@ -43,7 +43,7 @@ jobs: #Workflow run is made up of one or more jobs
           echo "TASK_ID='${{ env.taskID }}'"
 
       - name: Kill ecs task
-        if: ${{ ${{ env.taskID }} }}
+        if: ${{ env.taskID }}
         run: |
           aws ecs stop-task --cluster myCluster --task "${{ env.taskID }}" --reason "redeploy"
 
