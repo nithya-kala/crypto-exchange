@@ -38,6 +38,7 @@ jobs: #Workflow run is made up of one or more jobs
       - name: Get running task
         id: get_task_id
         run: |
+          echo `aws sts get-caller-identity`
           echo "taskID=`aws ecs list-tasks --cluster myCluster --desired-status RUNNING | egrep "task" | tr "/" " " |  awk '{print $4}' | tr -d '\n'`" >> $GITHUB_ENV
           echo "TASK_ID=${{ env.taskID }}"
           echo "TASK_ID='${{ env.taskID }}'"
