@@ -33,6 +33,12 @@ jobs: #Workflow run is made up of one or more jobs
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
+      - name: Kill ecs task
+        run: |
+          aws sts get-caller-identity
+          export TASK_ID=`aws ecs list-tasks --cluster myCluster --desired-status RUNNING | egrep "task" | tr "/" " " |  awk '{print $4}' | tr -d '\n'` 
+          aws ecs stop-task --cluster myCluster --task "${TASK_ID}" --reason "redeploy"
+
       - name: Add buildx plugin for docker
         id: add-buildx
         run: |
