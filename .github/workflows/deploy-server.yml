@@ -44,9 +44,7 @@ jobs: #Workflow run is made up of one or more jobs
           ECR_REPOSITORY: cryptojs-repo
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker buildx create --platform linux/amd64,linux/arm64 --name myarch
-          docker buildx use myarch
-          docker -D --log-level=debug buildx build -t "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" --push server
+          docker buildx build --platform linux/amd64,linux/arm64 -t "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" --push server
           printf "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
       - name: Fill in the new image ID in the ECS task definition
         id: task-def
