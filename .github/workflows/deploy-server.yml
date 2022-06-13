@@ -31,6 +31,7 @@ jobs: #Workflow run is made up of one or more jobs
         id: add-buildx
         run: |
           wget https://github.com/docker/buildx/releases/download/v0.8.2/buildx-v0.8.2.linux-amd64
+          mkdir -p ~/.docker/cli-plugins/
           mv buildx-v0.8.2.linux-amd64 ~/.docker/cli-plugins/buildx
           chmod +x ~/.docker/cli-plugins/docker-buildx
 
