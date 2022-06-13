@@ -41,6 +41,12 @@ jobs: #Workflow run is made up of one or more jobs
           echo "taskID=`aws ecs list-tasks --cluster myCluster --desired-status RUNNING | egrep "task" | tr "/" " " |  awk '{print $4}' | tr -d '\n'`" >> $GITHUB_ENV
           echo "TASK_ID=${{ env.taskID }}"
           echo "TASK_ID='${{ env.taskID }}'"
+          echo "action_state=yellow" >> $GITHUB_ENV
+
+      - name: Use the value
+        id: step_two
+        run: |
+          echo "${{ env.action_state }}" # This will output 'yellow'
 
       - name: Kill ecs task
         if: ${{ env.taskID }}
