@@ -1,15 +1,22 @@
 {
   "files": {
-    "main.css": "/crypto-exchange/static/css/main.ed8db4af.css",
-    "main.js": "/crypto-exchange/static/js/main.7cc71014.js",
-    "static/js/787.f436216a.chunk.js": "/crypto-exchange/static/js/787.f436216a.chunk.js",
+    "main.css": "/crypto-exchange/static/css/main.10bf732e.chunk.css",
+    "main.js": "/crypto-exchange/static/js/main.94005745.chunk.js",
+    "main.js.map": "/crypto-exchange/static/js/main.94005745.chunk.js.map",
+    "runtime-main.js": "/crypto-exchange/static/js/runtime-main.0a5bd6be.js",
+    "runtime-main.js.map": "/crypto-exchange/static/js/runtime-main.0a5bd6be.js.map",
+    "static/js/2.ff1b2085.chunk.js": "/crypto-exchange/static/js/2.ff1b2085.chunk.js",
+    "static/js/2.ff1b2085.chunk.js.map": "/crypto-exchange/static/js/2.ff1b2085.chunk.js.map",
+    "static/js/3.0208c09b.chunk.js": "/crypto-exchange/static/js/3.0208c09b.chunk.js",
+    "static/js/3.0208c09b.chunk.js.map": "/crypto-exchange/static/js/3.0208c09b.chunk.js.map",
     "index.html": "/crypto-exchange/index.html",
-    "main.ed8db4af.css.map": "/crypto-exchange/static/css/main.ed8db4af.css.map",
-    "main.7cc71014.js.map": "/crypto-exchange/static/js/main.7cc71014.js.map",
-    "787.f436216a.chunk.js.map": "/crypto-exchange/static/js/787.f436216a.chunk.js.map"
+    "static/css/main.10bf732e.chunk.css.map": "/crypto-exchange/static/css/main.10bf732e.chunk.css.map",
+    "static/js/2.ff1b2085.chunk.js.LICENSE.txt": "/crypto-exchange/static/js/2.ff1b2085.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/css/main.ed8db4af.css",
-    "static/js/main.7cc71014.js"
+    "static/js/runtime-main.0a5bd6be.js",
+    "static/js/2.ff1b2085.chunk.js",
+    "static/css/main.10bf732e.chunk.css",
+    "static/js/main.94005745.chunk.js"
   ]
 }
