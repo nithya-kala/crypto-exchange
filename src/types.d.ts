@@ -7,5 +7,5 @@ export type OrderType = {
     currency: string
     amount: number
   }
-  orderdate: Date
+  orderDate: string
 }

@@ -30,6 +30,7 @@ jobs: #Workflow run is made up of one or more jobs
       - name: Add .env file
         run: |
           printf "\nMONGO_URI=${{ secrets.MONGO_URI }}" >> server/.env
+          printf "\LIVEDATA_INTERVAL=${{ secrets.LIVEDATA_INTERVAL }}" >> server/.env
 
       - name: Login to ECR
         id: login-ecr

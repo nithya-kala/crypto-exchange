@@ -17,7 +17,7 @@ export const ExchangeTable: React.FC<MyProps> = (props) => {
       <td>{row.from.amount}</td>
       <td>{row.to.currency}</td>
       <td>{row.to.amount}</td>
-      <td>{row.orderdate.toString()}</td>
+      <td>{row.orderDate}</td>
     </tr>
   ))
 

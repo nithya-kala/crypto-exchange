@@ -6,6 +6,10 @@ import { ExchangeTable } from './ExchangeTable'
 import { OrderType } from './types'
 import { Container, createStyles, Text, Title } from '@mantine/core'
 
+if (process.env.HOST_ENV === 'ghpages') {
+  axios.defaults.baseURL = 'https://api.nithis.in'
+}
+
 const useStyles = createStyles((theme) => ({
   wrapper: {
     paddingTop: theme.spacing.xl * 4,
@@ -39,11 +43,9 @@ function App() {
   const [ordDate, onDtChange] = useState<Date | null>(null)
 
   const fetchOrders = () =>
-    axios.get('/api/get-orders').then((res) => setOrders(res.data))
-
-  useEffect(() => {
-    fetchOrders()
-  }, [ordDate])
+    axios
+      .get('/api/get-orders', { params: { ordDate: ordDate } })
+      .then((res) => setOrders(res.data))
 
   const onAddOrder = (order: OrderType) => {
     axios.post(`/api/insert-order`, order).then((res) => {
@@ -51,8 +53,14 @@ function App() {
     })
   }
 
+  useEffect(() => {
+    fetchOrders()
+  }, [ordDate])
+
+  setInterval(() => console.log('Entered Live Data'), 60 * 1000)
+
   return (
-    <Container size="md" pt={10} pb={10}>
+    <Container size="md" pt={10} pb={10} className={classes.wrapper}>
       <Title className={classes.title}>Crypto Exchange App</Title>
 
       <Container size={560} p={0}>

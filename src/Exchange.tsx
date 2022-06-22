@@ -51,7 +51,7 @@ const Exchange: React.FC<MyProps> = (props) => {
     const order: OrderType = {
       from: { currency: currFrom.label, amount: amount1 },
       to: { currency: currTo.label, amount: amount2 },
-      orderdate: new Date(),
+      orderDate: new Date().toISOString(),
     }
 
     props.onAddOrder(order)
