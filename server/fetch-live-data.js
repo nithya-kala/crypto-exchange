@@ -11,8 +11,8 @@ module.exports.updateLiveData = (db) => {
         orderDate: new Date().toISOString(),
       },
       {
-        from: { currency: 'Ethereum', amount: res.data.rates.eth.value },
-        to: { currency: 'USD', amount: res.data.rates.usd.value },
+        from: { currency: 'Ethereum', amount: 1 },
+        to: { currency: 'USD', amount: res.data.rates.usd.value * res.data.rates.eth.value },
         orderDate: new Date().toISOString(),
       },
       {
