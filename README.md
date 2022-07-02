@@ -20,7 +20,7 @@ The application consists of a React front-end client and a Node back-end service
 
 ## External API
 
-To fetch the Live data every 60 minutes, we connect to external API in ![coingecko](https://api.coingecko.com/api/v3/exchange_rates)
+To fetch the Live data every 60 minutes, we connect to external API in coingecko(https://api.coingecko.com/api/v3/exchange_rates)
 
 ## :flight_departure: Quick Start
 
