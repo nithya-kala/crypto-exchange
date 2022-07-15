@@ -22,6 +22,14 @@ The application consists of a React front-end client and a Node back-end service
 
 To fetch the Live data every 60 minutes, we connect to external API in coingecko(https://api.coingecko.com/api/v3/exchange_rates)
 
+## Environment variables
+
+Download the `.env.sample` and save as `.env` in your local. Set your Mongo connection URL. And also the LIVEDATA_INTERVAL in milliseconds to fetch the data from coingecko in specified intervals
+
+```.env
+MONGO_URI=mongodb+srv://username:passwd@host:port/database
+LIVEDATA_INTERVAL = 60000
+
 ## :flight_departure: Quick Start
 
 ```bash
